@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -50px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* Card */
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 350px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.typing {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* Button */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: white;
+  color: #ff4d6d;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* Hidden message */
+.hidden {
+  margin-top: 15px;
+  display: none;
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Hey You ❤️</h1>
+  <p class="typing" id="text"></p>
+  <br>
+  <button onclick="showLove()">Click me 🎁</button>
+  <div class="hidden" id="loveMsg">
+    twahchtk barcha walah ama manhbch nkhalik maaya fel machekel khterni nkhaf aalik ama walah nhebek barcha walah
+  </div>
+</div>
+
+<script>
+// Typing effect
+const message = "I made this little page just for you...";
+let i = 0;
+function type() {
+  if (i < message.length) {
+    document.getElementById("text").textContent += message.charAt(i);
+    i++;
+    setTimeout(type, 50);
+  }
+}
+type();
+
+// Reveal message
+function showLove() {
+  document.getElementById("loveMsg").style.display = "block";
+}
+
+// Floating hearts generator
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}, 400);
+</script>
+
+</body>
+</html>
